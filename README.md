@@ -11,7 +11,7 @@ la instancia del objeto creado inicialmente en lugar de uno nuevo.
 El Go no tenemos clases ni muchos menos la palabra reservada `static` por lo que implementaremos el patrón Singleton
 valiendonos del ámbito de los paquetes, primero creamos una estructura que contenga el objeto el cual queremos garantizar que sea un Singleton durante la ejecución del programa:
 
-```
+```Go
 package pkg_singleton
 
 import "fmt"
@@ -41,7 +41,7 @@ func (s *Singleton) PrintCount() {
 
 Para usarlo haríamos lo siguiente:
 
-```
+```Go
 package main
 
 import "pkg_singleton"
