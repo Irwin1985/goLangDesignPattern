@@ -9,7 +9,8 @@ que no hayan duplicados. Al primera llamada a esta instancia crea el objeto y la
 la instancia del objeto creado inicialmente en lugar de uno nuevo.
 
 El Go no tenemos clases ni muchos menos la palabra reservada `static` por lo que implementaremos el patrón Singleton
-valiendonos del ámbito de los paquetes, primero creamos una estructura que contenga el objeto el cual queremos garantizar que sea un Singleton durante la ejecución del programa:
+valiendonos del ámbito de los paquetes, primero creamos una estructura que contenga el objeto el cual queremos garantizar 
+que sea un Singleton durante la ejecución del programa:
 
 ```Go
 package pkg_singleton
@@ -63,13 +64,15 @@ func main() {
 
 ### Builder
 
-Usa este patrón cuando necesites crear objetos que comparten características similares, también se les suele llamar *"Familias"*, por ejemplo: *Coche, Camión, Autobus, Motocicleta* son algunos objetos que tienen **Ruedas** y **Asientos**, por lo tanto si en tu aplicación necesitas crear objetos de este tipo entonces te conviene mejor usar un builder para Vehiculos y que cada uno de ellos implemente la interfáz común.
+Usa este patrón cuando necesites crear objetos que comparten características similares, también se les suele llamar *"Familias"*, por ejemplo: *Coche, Camión, Autobus, Motocicleta* son algunos objetos que tienen **Ruedas** y **Asientos**, por lo tanto si en tu aplicación necesitas crear objetos de este tipo entonces te conviene mejor 
+usar un builder para Vehiculos y que cada uno de ellos implemente la interfáz común.
 
 Para crear un patrón builder se necesitan 3 cosas:
 
 - **Producto:** un tipo abstracto del cual derivan todos los productos finales. Para nuestro ejemplo sería el Vehiculo y los tipos concretos serían de este tipo.
 - **BuildProcess:** esta sería una interfaz que contiene los métodos de ensamblado para producir el producto final.
-- **Director:** esta sería la línea de ensamblaje. Es decir, parte primero con el Producto en bruto y luego le va dando forma llamando a todos y cada uno de los métodos de ensamblado contenidos en el **BuildProcess.**
+- **Director:** esta sería la línea de ensamblaje. Es decir, parte primero con el Producto en bruto y luego le va dando forma llamando a todos y cada uno de los 
+  métodos de ensamblado contenidos en el **BuildProcess.**
 
 Veamos un ejemplo:
 
@@ -88,7 +91,8 @@ type VehicleProduct struct {
     Structure string	// Esto es solo el tipo o nombre del vehiculo final.
 }
 
-// Esta es la interfaz mencionada anteriormente. Todas las estructuras que deseen formar parte de esta cadena de producción necesitan implementar esta interfaz.
+// Esta es la interfaz mencionada anteriormente. 
+// Todas las estructuras que deseen formar parte de esta cadena de producción necesitan implementar esta interfaz.
 type VehicleBuildProcess interface {
     SetWheels() VehicleBuildProcess
     SetSeats() VehicleBuildProcess
