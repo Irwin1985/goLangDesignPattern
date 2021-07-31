@@ -63,13 +63,13 @@ func main() {
 
 ### Builder
 
-Usa este patrón cuando necesites crear objetos que comparten características similares, también se les suele llamar "Familias", por ejemplo: Coche, Camión, Autobus, Motocicleta son algunos objetos que tienen Ruedas y Asientos, por lo tanto si en tu aplicación necesitas crear objetos de este tipo entonces te conviene mejor usar un builder para Vehiculos y que cada uno de ellos implemente la interfáz común.
+Usa este patrón cuando necesites crear objetos que comparten características similares, también se les suele llamar *"Familias"*, por ejemplo: *Coche, Camión, Autobus, Motocicleta* son algunos objetos que tienen **Ruedas** y **Asientos**, por lo tanto si en tu aplicación necesitas crear objetos de este tipo entonces te conviene mejor usar un builder para Vehiculos y que cada uno de ellos implemente la interfáz común.
 
 Para crear un patrón builder se necesitan 3 cosas:
 
-- Producto: un tipo abstracto del cual derivan todos los productos finales. Para nuestro ejemplo sería el Vehiculo y los tipos concretos serían de este tipo.
-- BuildProcess: esta sería una interfaz que contiene los métodos de ensamblado para producir el producto final.
-- Director: esta sería la línea de ensamblaje. Es decir, parte primero con el Producto en bruto y luego le va dando forma llamando a todos y cada uno de los métodos de ensamblado contenidos en el BuildProcess.
+- **Producto:** un tipo abstracto del cual derivan todos los productos finales. Para nuestro ejemplo sería el Vehiculo y los tipos concretos serían de este tipo.
+- **BuildProcess:** esta sería una interfaz que contiene los métodos de ensamblado para producir el producto final.
+- **Director:** esta sería la línea de ensamblaje. Es decir, parte primero con el Producto en bruto y luego le va dando forma llamando a todos y cada uno de los métodos de ensamblado contenidos en el **BuildProcess.**
 
 Veamos un ejemplo:
 
@@ -179,4 +179,46 @@ func (t *TruckBuilder) GetVehicle() VehicleProduct {
     return t.v
 }
 
+```
+
+Vamos a crear unos cuantos vehículos...
+
+```Go
+	// Creamos un único director
+	vehicleDirector := builder.VehicleDirector{}
+
+	// Crearemos un Coche de 5 asientos
+	carBuilder := &builder.CarBuilder{}
+	vehicleDirector.SetBuilder(carBuilder)
+	vehicleDirector.Construct()
+
+	// Obtenemos la instancia de nuestro Coche
+	car := carBuilder.GetVehicle()
+	fmt.Printf("Wheels: %d, Seats: %d, Structure: %s\n", car.Wheels, car.Seats, car.Structure)
+
+	// Ahora creemos una Motocicleta
+	bikeBuilder := &builder.BikeBuilder{}
+	vehicleDirector.SetBuilder(bikeBuilder)
+	vehicleDirector.Construct()
+
+	// Obtenemos nuestra motocicleta
+	bike := bikeBuilder.GetVehicle()
+	fmt.Printf("Wheels: %d, Seats: %d, Structure: %s\n", bike.Wheels, bike.Seats, bike.Structure)
+
+	// que tal si creamos un camión?
+	truckBuilder := &builder.TruckBuilder{}
+	vehicleDirector.SetBuilder(truckBuilder)
+	vehicleDirector.Construct()
+
+	// venga, dame mi camión...!
+	truck := truckBuilder.GetVehicle()
+	fmt.Printf("Wheels: %d, Seats: %d, Structure: %s\n", truck.Wheels, truck.Seats, truck.Structure)
+```
+
+Todo lo anterior imprime:
+
+```
+Wheels: 4, Seats: 5, Structure: Car        
+Wheels: 2, Seats: 1, Structure: Bike       
+Wheels: 10, Seats: 3, Structure: Truck  
 ```
