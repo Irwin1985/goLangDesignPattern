@@ -184,35 +184,35 @@ func (t *TruckBuilder) GetVehicle() VehicleProduct {
 Vamos a crear unos cuantos vehículos...
 
 ```Go
-	// Creamos un único director
-	vehicleDirector := builder.VehicleDirector{}
+// Creamos un único director
+vehicleDirector := builder.VehicleDirector{}
 
-	// Crearemos un Coche de 5 asientos
-	carBuilder := &builder.CarBuilder{}
-	vehicleDirector.SetBuilder(carBuilder)
-	vehicleDirector.Construct()
+// Crearemos un Coche de 5 asientos
+carBuilder := &builder.CarBuilder{}
+vehicleDirector.SetBuilder(carBuilder)
+vehicleDirector.Construct()
 
-	// Obtenemos la instancia de nuestro Coche
-	car := carBuilder.GetVehicle()
-	fmt.Printf("Wheels: %d, Seats: %d, Structure: %s\n", car.Wheels, car.Seats, car.Structure)
+// Obtenemos la instancia de nuestro Coche
+car := carBuilder.GetVehicle()
+fmt.Printf("Wheels: %d, Seats: %d, Structure: %s\n", car.Wheels, car.Seats, car.Structure)
 
-	// Ahora creemos una Motocicleta
-	bikeBuilder := &builder.BikeBuilder{}
-	vehicleDirector.SetBuilder(bikeBuilder)
-	vehicleDirector.Construct()
+// Ahora creemos una Motocicleta
+bikeBuilder := &builder.BikeBuilder{}
+vehicleDirector.SetBuilder(bikeBuilder)
+vehicleDirector.Construct()
 
-	// Obtenemos nuestra motocicleta
-	bike := bikeBuilder.GetVehicle()
-	fmt.Printf("Wheels: %d, Seats: %d, Structure: %s\n", bike.Wheels, bike.Seats, bike.Structure)
+// Obtenemos nuestra motocicleta
+bike := bikeBuilder.GetVehicle()
+fmt.Printf("Wheels: %d, Seats: %d, Structure: %s\n", bike.Wheels, bike.Seats, bike.Structure)
 
-	// que tal si creamos un camión?
-	truckBuilder := &builder.TruckBuilder{}
-	vehicleDirector.SetBuilder(truckBuilder)
-	vehicleDirector.Construct()
+// que tal si creamos un camión?
+truckBuilder := &builder.TruckBuilder{}
+vehicleDirector.SetBuilder(truckBuilder)
+vehicleDirector.Construct()
 
-	// venga, dame mi camión...!
-	truck := truckBuilder.GetVehicle()
-	fmt.Printf("Wheels: %d, Seats: %d, Structure: %s\n", truck.Wheels, truck.Seats, truck.Structure)
+// venga, dame mi camión...!
+truck := truckBuilder.GetVehicle()
+fmt.Printf("Wheels: %d, Seats: %d, Structure: %s\n", truck.Wheels, truck.Seats, truck.Structure)
 ```
 
 Todo lo anterior imprime:
